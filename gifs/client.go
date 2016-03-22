@@ -29,8 +29,8 @@ type gifsClient struct {
 // ImportRequest represents a request to import externally hosted content
 type ImportRequest struct {
 	SourceURL   string              `json:"source"`
-	Title       string              `json:"title",omitempty`
-	Tags        []string            `json:"tags",omitempty`
+	Title       string              `json:"title,omitempty"`
+	Tags        []string            `json:"tags,omitempty"`
 	NSFW        bool                `json:"nsfw"`
 	Attribution *AttributionDetails `json:"attribution"`
 }
@@ -89,6 +89,9 @@ func (g *gifsClient) Import(request *ImportRequest) error {
 
 	var responseBody []byte
 	responseBody, err = ioutil.ReadAll(response.Body)
+	if err != nil {
+		return err
+	}
 
 	if response.StatusCode != 200 {
 		fmt.Printf("Response body: %s\n", string(responseBody))
@@ -158,6 +161,9 @@ func (g *gifsClient) Upload(request *UploadRequest, fileReader io.Reader) error 
 
 	var responseBody []byte
 	responseBody, err = ioutil.ReadAll(response.Body)
+	if err != nil {
+		return err
+	}
 
 	if response.StatusCode != 200 {
 		fmt.Printf("Response body: %s\n", string(responseBody))
