@@ -4,6 +4,7 @@ Go Client for the gifs API
 # Operations
 
 ## Import from URL
+Invokes the [Import](http://docs.gifs.com/docs/mediaimport) endpoint in the GIFS API.  Sample client code follows:
 
 ```go
 package main
@@ -32,6 +33,7 @@ func main() {
 
 
 ## Upload File
+Invokes the [Upload](http://docs.gifs.com/docs/mediaupload) endpoint on the GIFS API.  Sample code follows:
 
 ```go
 package main
@@ -46,7 +48,9 @@ import (
 func main() {
 	client := gifs.NewGIFSClient(os.Getenv("GIFS_API_KEY"))
 
-	inputFile, err := os.OpenFile(os.Args[2], os.O_RDONLY, os.FileMode(666))
+	title := os.Args[1]
+	filename := os.Args[2]
+	inputFile, err := os.OpenFile(filename, os.O_RDONLY, os.FileMode(666))
 	if err != nil {
 		fmt.Printf("Error opening file: %s\n", err.Error())
 		return
@@ -54,8 +58,8 @@ func main() {
 	defer inputFile.Close()
 
 	request := &gifs.UploadRequest{
-		Title:    os.Args[1],
-		Filename: os.Args[2],
+		Title:    title,
+		Filename: filename,
 	}
 	err = client.Upload(request, inputFile)
 	if err != nil {
