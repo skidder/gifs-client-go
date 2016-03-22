@@ -1,5 +1,5 @@
 # gifs-client-go
-Go Client for the gifs API
+Go Client for the [GIFS API](http://docs.gifs.com/v1.0/docs).
 
 # Operations
 
