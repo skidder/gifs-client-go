@@ -15,8 +15,8 @@ const (
 	defaultAPIEndpoint = "https://api.gifs.com"
 )
 
-// GIFSClient has functions for adding content to gifs
-type GIFSClient interface {
+// Client has functions for adding content to gifs
+type Client interface {
 	Import(*ImportRequest) error
 	Upload(*UploadRequest, io.Reader) error
 }
@@ -52,7 +52,7 @@ type AttributionDetails struct {
 }
 
 // NewGIFSClient interacts with production gifs API endpoint
-func NewGIFSClient(apiKey string) GIFSClient {
+func NewGIFSClient(apiKey string) Client {
 	return &gifsClient{
 		baseURL: defaultAPIEndpoint,
 		apiKey:  apiKey,
@@ -60,7 +60,7 @@ func NewGIFSClient(apiKey string) GIFSClient {
 }
 
 // NewGIFSClientWithURL interacts with an arbitrary API endpoint
-func NewGIFSClientWithURL(baseURL string, apiKey string) GIFSClient {
+func NewGIFSClientWithURL(baseURL string, apiKey string) Client {
 	return &gifsClient{
 		baseURL: baseURL,
 		apiKey:  apiKey,
