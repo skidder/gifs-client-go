@@ -1,0 +1,16 @@
+checkout:
+  post:
+    - rm -rf ~/.go_workspace/src/github.com/skidder
+    - mkdir -p ~/.go_workspace/src/github.com/skidder
+    - cp -R ~/gifs-client-go ~/.go_workspace/src/github.com/skidder/gifs-client-go
+dependencies:
+  pre:
+    - sudo apt-get remove --purge golang
+    - sudo rm -rf /usr/local/go/
+    - mkdir /tmp/go && wget 'https://storage.googleapis.com/golang/go1.5.3.linux-amd64.tar.gz' -O /tmp/go/go1.5.3.linux-amd64.tar.gz
+    - sudo tar -xzf /tmp/go/go1.5.3.linux-amd64.tar.gz -C /usr/local
+test:
+  pre:
+    - cd ~/.go_workspace/src/github.com/urlgrey/gifs-client-go && go vet ./...
+  override:
+    - cd ~/.go_workspace/src/github.com/urlgrey/gifs-client-go && go build ./...
