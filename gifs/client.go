@@ -8,7 +8,6 @@ import (
 	"io/ioutil"
 	"mime/multipart"
 	"net/http"
-	// "github.com/davecgh/go-spew/spew"
 )
 
 const (
@@ -143,14 +142,12 @@ func (g *gifsClient) Upload(request *UploadRequest, fileReader io.Reader) error 
 		return err
 	}
 
-	// fmt.Println("Request Body:\n%s\n", string(body.Bytes()))
 	bodyReader := bytes.NewReader(body.Bytes())
 	var httpRequest *http.Request
 	httpRequest, err = http.NewRequest("POST", fmt.Sprintf("%s/media/upload", g.baseURL), bodyReader)
 	httpRequest.Header.Add("Gifs-API-Key", g.apiKey)
 	httpRequest.Header.Add("Content-Type", writer.FormDataContentType())
 
-	// spew.Dump(httpRequest)
 	client := &http.Client{}
 	var response *http.Response
 	response, err = client.Do(httpRequest)
