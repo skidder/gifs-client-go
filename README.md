@@ -1,6 +1,12 @@
 # gifs-client-go
 Go Client for the [GIFS API](http://docs.gifs.com/v1.0/docs).
 
+# Installation
+
+```shell
+go get -u github.com/skidder/gifs-client-go/gifs
+```
+
 # Operations
 
 ## Import from URL
