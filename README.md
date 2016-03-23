@@ -1,4 +1,7 @@
 # gifs-client-go
+
+[![GoDoc](https://godoc.org/github.com/skidder/gifs-client-go/gifs?status.svg)](https://godoc.org/github.com/skidder/gifs-client-go/gifs)
+
 Go Client for the [GIFS API](http://docs.gifs.com/v1.0/docs).
 
 # Installation
